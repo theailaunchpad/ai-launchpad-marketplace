@@ -13,11 +13,11 @@ Start by creating a TODO list to complete all steps outlined below.
 
 1. Get issue details
 
-Use the `mcp__linear__get_issue` tool directly to fetch the issue details (e.g. with `{"id": "spr-12"}`).
+Use the `mcp__linear__get_issue` tool directly to fetch the issue details (e.g. with `{"id": "<issue-id>"}`).
 
 2. Generate issue branch
 
-Create a new issue branch following the user's typical process, typically from `main` or `dev` if they have a staging branch. Name the branch after the issue ID to automatically link it to linear (e.g. spr-123-my-feature). This automatically moves the issue to "In Progress" in Linear.
+Create a new issue branch following the user's typical process, typically from the base branch (e.g. `main` or `dev` if they have a staging branch). Name the branch after the issue ID to automatically link it to Linear (e.g. `eng-123-my-feature`). This automatically moves the issue to "In Progress" in Linear.
 
 3. **Call a new Plan agent** to investigate the issue and generate a plan to resolve the issue using Test Driven Development (TDD).
 
@@ -26,35 +26,51 @@ The following instructions are an example, modify or add as needed.
 <example_prompt>
 You **MUST** use the test-driven-development skill for this task. Start by invoking the skill to understand the implementation strategy.
 
-Use the `mcp__linear__get_issue` tool directly to fetch the issue details (e.g. with `{"id": "spr-12"}`).
+Use the `mcp__linear__get_issue` tool directly to fetch the issue details (e.g. with `{"id": "<issue-id>"}`).
 
 Gather additional context if relevant, e.g.:
 
-- See related git commit and PRs
+- Related git commits and PRs
 - Explore relevant code
-- Sentry for error/issue logs
-- Use PSQL to explore the local dev db, or Supabase to access actual PROD data
-- Render for backend logs
-- etc.
+- Error/issue tracking tools (e.g. Sentry)
+- Database exploration (local dev DB or production read replicas)
+- Application/backend logs
 </example_prompt>
 
 4. Call a new General agent to implement the plan. 
 
-After implementation, the agent must run the tests and ensure they pass. The agent must also ensure that all linters and type checkers pass, apply supabase migrations locally and ensure no errors, and that bun run build completes successfully.
+The General agent *MUST*:
+    a. Implement the plan using TDD.
+    b. Run the tests and ensure they pass. 
+    c. Ensure that all linters and type checkers pass
+    d. Run any necessary database migrations
+    e. Ensure the project builds successfully
+    f. Commit and push the changes on the issue branch
+    g. Open a PR into the base branch for review.
 
-5. Commit and push the changes on the issue branch, then open a PR into main for review.
+5. Monitor the PR checks until they've all completed running. 
 
-6. Update the linear issue with any relevant information or findings that are important for posterity. Do not change the issue status/state, it will automatically move to "Done" when the PR is merged.
+    If any checks failed, call a new General agent to:
+    a. Read the check results
+    b. Fix the failures
+    c. Commit and push the changes
+    d. Add a comment to the PR summarizing the changes made.
 
-7. Start a background task to monitor the PR checks until they've all completed running. IF any checks failed, call a new General agent to read the check results, fix the failures, commit and push the changes and add a comment to the PR summarizing the changes made. You can ignore failed Vercel deployments due to permissions errors.
+6. Review and Fix
 
-8. You, Claude, must read the complete PR Review. If any issues/recommendations have been raised, call a General agent to address **ALL** issues, even minor ones.
+    a. Call the `pr-reviewer` agent to review the PR or re-review if new commits have been pushed.
 
-The general agent should: 
-- Read the full PR review
-- Address **ALL** issues, even minor ones
-- Re-run tests as needed
-- Commit the updates and push
-- Add a comment to the PR summarizing the changes made.
+    b. You, Claude, must read the complete PR Review. If any issues/recommendations have been raised, call a General agent to address **ALL** issues, even minor ones.
 
-9. Clean up by killing any background tasks
+    The general agent should: 
+    - Read the full PR review
+    - Address **ALL** issues, even minor ones
+    - Re-run tests as needed
+    - Commit the updates and push
+    - Add a comment to the PR summarizing the changes made.
+
+    c. Repeat 7a and 7b until the PR has been approved.
+
+7. Clean up by killing any background tasks
+
+8. Update the linear issue with any relevant information or findings that are important for posterity. Do not change the issue status/state, it will automatically move to "Done" when the PR is merged.
