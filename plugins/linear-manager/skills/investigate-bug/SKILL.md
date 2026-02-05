@@ -1,5 +1,5 @@
 ---
-name: Investigate Bug
+name: investigate-bug
 description: Investigate a bug and provide enhanced context and analysis using the systematic-debugging skill.
 ---
 

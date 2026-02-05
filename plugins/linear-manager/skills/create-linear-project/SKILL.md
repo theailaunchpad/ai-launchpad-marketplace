@@ -1,6 +1,6 @@
 ---
-name: Create Linear Project
-description: Create a self-contained Linear project and associated issues such that any AI coding agent can implement the entire project without needing additional context.
+name: create-linear-project
+description: Create a self-contained Linear project and associated issues such that any AI coding agent can implement the entire project without needing additional context. Always use this skill when you need to create a new Linear project.
 ---
 
 # Create Linear Project

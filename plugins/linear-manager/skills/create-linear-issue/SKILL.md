@@ -1,6 +1,6 @@
 ---
 name: create-linear-issue
-description: Create a self-contained Linear issue that any AI coding agent can implement without needing additional context. Use when the user asks to create a new issue.
+description: Create a self-contained Linear issue that any AI coding agent can implement without needing additional context. Always use this skill when you need to create a new Linear issue.
 ---
 
 # Create Linear Issue

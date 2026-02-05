@@ -1,6 +1,6 @@
 ---
-name: resolve-linear-issue-tdd
-description: Resolve a linear issue end-to-end using Test Driven Development. This involves investigating the issue and relevant context, generating a detailed plan, implementing the plan using Test Driven Development (TDD), and deploying the changes.
+name: resolve-linear-issue
+description: Resolve a linear issue end-to-end using Test Driven Development. This involves investigating the issue and relevant context, generating a detailed plan, implementing the plan using Test Driven Development (TDD), and deploying the changes. Always use this skill when you need to resolve an existing Linear issue.
 ---
 
 # Resolve Linear Issue
