@@ -1,0 +1,8 @@
+{
+  "name": "linear-manager",
+  "description": "Automated project management system for Linear. Create self-contained issues and projects that Claude Code can implement end-to-end without additional context.",
+  "version": "1.0.0",
+  "author": {
+    "name": "AI Launchpad"
+  }
+}
