@@ -12,10 +12,10 @@ Premium Claude Code plugins by AI Launchpad.
 
 | Plugin | Description |
 |--------|-------------|
-| `linear` | Linear issue tracking integration — create issues, manage projects, update statuses, and search across workspaces |
+| `linear-manager` | Automated project management system for Linear. Create self-contained issues and projects that Claude Code can implement end-to-end without additional context. |
 
 ### Install a plugin
 
 ```
-/plugin install linear@ai-launchpad-marketplace
+/plugin install linear-manager@ai-launchpad-marketplace
 ```
