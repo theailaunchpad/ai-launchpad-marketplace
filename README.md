@@ -1,11 +1,11 @@
-# AI Launchpad Marketplace
+# AI Launchpad Premium Marketplace
 
 Premium Claude Code plugins by AI Launchpad.
 
 ## Installation
 
 ```
-/plugin marketplace add theailaunchpad/ai-launchpad-marketplace
+/plugin marketplace add theailaunchpad/al-premium-marketplace
 ```
 
 ## Available Plugins
@@ -17,5 +17,5 @@ Premium Claude Code plugins by AI Launchpad.
 ### Install a plugin
 
 ```
-/plugin install linear-pm@ai-launchpad-marketplace
+/plugin install linear-pm@al-premium-marketplace
 ```
