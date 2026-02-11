@@ -263,8 +263,31 @@ async function main() {
   const projectName = `[Test] Task Manager REST API - ${timestamp}`;
   console.log(`\nCreating project: ${projectName}`);
 
+  const projectDescription = `## Goal
+Build a production-ready Task Manager REST API with Express and TypeScript that supports full CRUD for tasks and users, user-task associations, input validation, and paginated list endpoints.
+
+## Milestones
+### 1. Foundation
+Stand up the Express + TypeScript server scaffold and configure PostgreSQL with Prisma ORM so all subsequent features have a working server and database layer.
+
+### 2. Core
+Implement full CRUD endpoints for both Task and User resources with proper HTTP status codes and consistent JSON responses.
+
+### 3. Integration
+Connect tasks to users via assignee associations with filtering support, and add input validation with a global error handler across all endpoints.
+
+### 4. Polish
+Add pagination and sorting to all list endpoints so the API handles large datasets efficiently.
+
+## Technical Context
+The project starts from a minimal Express scaffold (\`src/index.ts\` with a single GET / route) and an empty Prisma schema (generator + PostgreSQL datasource, no models). Dependencies include Express 4.x, Prisma 6.x, and TypeScript 5.x.
+
+## Out of Scope
+Authentication, authorization, rate limiting, WebSocket support, deployment configuration, and frontend clients.`;
+
   const projectPayload = await client.createProject({
     name: projectName,
+    content: projectDescription,
     teamIds: [teamId],
   });
   const project = await projectPayload.project;
